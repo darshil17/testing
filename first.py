@@ -16,5 +16,11 @@ c=Checkbutton(text="male",command=c_checked)
 c.select()
 c.pack()
 e=Entry(textvariable=e_text).pack()
-f=Frame(root,bg="red",height="100",width="100").pack()
+f=Frame(root,bg="yellow",height="300",width="300")
+li=Listbox(f)
+liitem=["darshil","manoj","jayanti"]
+for i in liitem:
+    li.insert(END,i)
+li.pack()
+f.pack()
 root.mainloop()
