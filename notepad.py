@@ -115,15 +115,24 @@ class Notepad:
         self.__thisScrollBar.config(command=self.__thisTextArea.yview)    
         self.__thisTextArea.config(yscrollcommand=self.__thisScrollBar.set)
      
-         
-    def __quitApplication(self):
+        #binding an event to menu's item
+
+        self.__root.bind("<Control-c>",self.__copy)
+        self.__root.bind("<Control-x>",self.__cut)
+        self.__root.bind("<Control-p>",self.__paste)
+        self.__root.bind("<Control-o>",self.__openFile)
+        self.__root.bind("<Control-n>",self.__newFile)
+        self.__root.bind("<Control-s>",self.__saveFile)
+        self.__root.bind("<Control-q>",self.__quitApplication)
+        self.__root.bind("<Control-h>",self.__showAbout)
+    def __quitApplication(self,event=""):
         self.__root.quit()
         # exit()
  
-    def __showAbout(self):
+    def __showAbout(self,event=""):
         showinfo("Notepad","Notepad by darshil solanki")
  
-    def __openFile(self):
+    def __openFile(self,event=""):
          
         self.__file = askopenfilename(defaultextension=".txt",
                                       filetypes=[("Text Documents","*.txt"),("All Files","*.*")
@@ -147,12 +156,12 @@ class Notepad:
             file.close()
  
          
-    def __newFile(self):
+    def __newFile(self,event=""):
         self.__root.title("Untitled - Notepad")
         self.__file = None
         self.__thisTextArea.delete(1.0,END)
  
-    def __saveFile(self):
+    def __saveFile(self,event=""):
  
         if self.__file == None:
             # Save as new file
@@ -178,13 +187,13 @@ class Notepad:
             file.write(self.__thisTextArea.get(1.0,END))
             file.close()
  
-    def __cut(self):
+    def __cut(self,event=""):
         self.__thisTextArea.event_generate("<<Cut>>")
  
-    def __copy(self):
+    def __copy(self,event=""):
         self.__thisTextArea.event_generate("<<Copy>>")
  
-    def __paste(self):
+    def __paste(self,event=""):
         self.__thisTextArea.event_generate("<<Paste>>")
  
     def run(self):
