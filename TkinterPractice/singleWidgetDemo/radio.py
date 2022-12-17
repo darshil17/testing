@@ -5,8 +5,6 @@ root.geometry("350x250")
 root.title("Radiobutton Example")
 radio = IntVar()
 def selection():
-    """ selection = "you have selected " + str(radio.get())
-    label = Label.config(text=selection) """
     a1 = radio.get()
     if(a1 == 1):
         l = Label(root,text="BCA")
@@ -25,7 +23,5 @@ r1 = Radiobutton(root, text="MSCIT", variable=radio,value=2,command=selection)
 r1.pack()
 r2 = Radiobutton(root, text="MBA", variable=radio, value=3,command=selection)
 r2.pack()
-
-# label = Label(root)
 
 root.mainloop()
